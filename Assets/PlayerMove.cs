@@ -50,7 +50,7 @@ public class PlayerMove : MonoBehaviour
 
     void MovePlayer()
     {
-        myCC.Move(movementVector * Time.deltaTime);
+        myCC.Move(movementVector * Time.deltaTime);     //moving character controller by calculated value, multiplied with change in time to make transition smooth
     }
 
     void CheckForHeadBob()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MouseMovement : MonoBehaviour
 {
-    public float sensitivity = 1.5f;
+    public float sensitivity = 7.5f;
     public float smoothing = 1.5f;
 
     private float xMousePos;
@@ -15,7 +15,7 @@ public class MouseMovement : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-       //lock and hide the cursor
+       //lock and hide the cursor so player can move around
        Cursor.lockState = CursorLockMode.Locked;
        Cursor.visible = false;
     }
@@ -23,25 +23,25 @@ public class MouseMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetInput();
-        ModifyInput();
-        MovePlayer();
+        GetInput();         //function to get input
+        ModifyInput();      //modifying input
+        MovePlayer();       //moving player
     }
 
     void GetInput()
     {
-        xMousePos = Input.GetAxisRaw("Mouse X");
+        xMousePos = Input.GetAxisRaw("Mouse X");    //getting x-coordinate of mouse
     }
 
     void ModifyInput()
     {
-        xMousePos *= sensitivity * smoothing;
-        smoothedMousePos = Mathf.Lerp(smoothedMousePos, xMousePos, 1f/smoothing);
+        xMousePos *= sensitivity * smoothing;       //calculating new xMouse coordinate factoring in sensitivity and smoothing
+        smoothedMousePos = Mathf.Lerp(smoothedMousePos, xMousePos, 1f/smoothing);   //Lerp function eases transitions of values for smooth camera movement
     }
 
     void MovePlayer()
     {
-        currentLookingPos += smoothedMousePos;
-        transform.localRotation = Quaternion.AngleAxis(currentLookingPos, transform.up);
+        currentLookingPos += smoothedMousePos;      //updating current looking position with smoothed Mouse Pos
+        transform.localRotation = Quaternion.AngleAxis(currentLookingPos, transform.up);    //transform axial view of function
     }
 }
