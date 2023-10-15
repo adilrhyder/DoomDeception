@@ -2113,7 +2113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca40d59703fe0f429328dddd753c90d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 15
+  playerSpeed: 10
+  momentumDamping: 5
   camAnim: {fileID: 963194229}
 --- !u!114 &1612480683
 MonoBehaviour:

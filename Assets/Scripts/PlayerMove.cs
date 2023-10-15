@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    //variable to help us control the player
-    public float playerSpeed = 20f;
+    //variables to help us control the player
+    public float playerSpeed = 10f;
+    public float momentumDamping = 5f;  //to add momentum to character movement (classic doom)
 
     //variable to access character controller component
     private CharacterController myCC;
@@ -33,17 +34,33 @@ public class PlayerMove : MonoBehaviour
     {
         GetInput();             //function gets input
         MovePlayer();           //function moves player
-        CheckForHeadBob();      //function checks if player is walking
         
         camAnim.SetBool("isWalking", isWalking);    //function to use animator
     }
 
     void GetInput()
     {
-        //creating input vector
-        inputVector = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")); //getting coordinates of player model that are all between 0 and 1 
-        inputVector.Normalize();                                                                     //normalize to return unit changes of more than 1 to within 1 and 0 (keeps speed constant)
-        inputVector = transform.TransformDirection(inputVector);                                     //to make the player move in the direction the player is facing
+        //creating input vector (this is what happens when we hold the keys)
+        if (Input.GetKey(KeyCode.W) || 
+            Input.GetKey(KeyCode.A) ||
+            Input.GetKey(KeyCode.S) ||
+            Input.GetKey(KeyCode.D))
+        {
+            //if we're holding down wasd, we'll get (-1,0,1)
+            inputVector = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")); //getting coordinates of player model that are all between 0 and 1 
+            inputVector.Normalize();                                                                     //normalize to return unit changes of more than 1 to within 1 and 0 (keeps speed constant)
+            inputVector = transform.TransformDirection(inputVector);                                     //to make the player move in the direction the player is facing
+        
+            isWalking = true;   //for headbob check
+        }
+        else
+        {
+            //when we release the keys, we want some momentum to carry over to the character
+            // if we're not pressing the buttons give us whatever inputVector was at when it was last checked and lerp it towards zero 
+            inputVector = Vector3.Lerp(inputVector, Vector3.zero, momentumDamping * Time.deltaTime);
+        
+            isWalking = false;  //for headbob check
+        }
 
         movementVector = (inputVector * playerSpeed) + (Vector3.up * myGravity);                     //Vector3.up is unity's y-axis; movementVector tells us how fast and in what direction a player should move
     }
@@ -53,15 +70,4 @@ public class PlayerMove : MonoBehaviour
         myCC.Move(movementVector * Time.deltaTime);     //moving character controller by calculated value, multiplied with change in time to make transition smooth
     }
 
-    void CheckForHeadBob()
-    {
-        if (myCC.velocity.magnitude > 0.1f)        //if built-in "velocity" property of character creator has a non-trivial magnitude, we know the character is walking
-        {
-            isWalking = true;
-        }
-        else
-        {
-            isWalking = false;
-        }
-    }
 }
