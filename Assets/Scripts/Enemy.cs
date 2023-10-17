@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     public EnemyManager enemyManager;
     private float enemyHealth = 2f; //variable for enemy health
 
+    public GameObject gunHitEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +32,10 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        //apply gun hit effect so enemies die properly
+        Instantiate(gunHitEffect, transform.position, Quaternion.identity);
+        
+        //update enemy health
         enemyHealth -= damage;
     }
 }

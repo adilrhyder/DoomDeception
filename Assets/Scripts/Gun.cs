@@ -3,30 +3,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//script to define behavior of gun through box collider
 public class Gun : MonoBehaviour
 {
-    //script to define behavior of gun through box collider
-    private BoxCollider gunTrigger;
-
-    //get list to manage enemies in range of gun (we attach this variable in Unity by dragging and dropping "EnemyManager" in this field)
-    public EnemyManager enemyManager;
-    
     //variables defining range of gun (gun is basically a rectangle that detects when enemies are inside it and damages them if user clicks mouse button)
     public float range = 20f;
     public float verticalRange = 20f;
+    public float gunShotRadius = 20f;   //radius at which enemies can hear gunshot
+    
+    private BoxCollider gunTrigger;
+    //get list to manage enemies in range of gun (we attach this variable in Unity by dragging and dropping "EnemyManager" in this field)
+    public EnemyManager enemyManager;
     
     //variable defining rate at which gun can fire
     public float fireRate = 1f;
-
     //to keep track of fire rate
     private float nextTimeToFire = 0f;  //don't need to do this (0 is assigned by default)
-
+    
     //damage of gun (set to 2 by default - enemy health is also 2 for now)
     public float bigDamage = 2f;
     public float smallDamage = 1f;
-
+    
     //layer mask for raycast of gun projectile
     public LayerMask raycastLayerMask;
+    //layer mask for enemy
+    public LayerMask enemyLayerMask;
+
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +51,21 @@ public class Gun : MonoBehaviour
     //fire function to fire gun (pew pew)
     void Fire()
     {
+        //simulate gunshot radius -> start at player position i.e. transform.position, extend over gunshot radius, and detect enemy layer mask
+        //overlapsphere returns an array of colliders that fall within the given radius
+        Collider[] enemyColliders;
+        enemyColliders = Physics.OverlapSphere(transform.position, gunShotRadius, enemyLayerMask);
+
+        //alert all enemies within radius
+        foreach (var enemyCollider in enemyColliders)
+        {
+            enemyCollider.GetComponent<EnemyAwareness>().isAggro = true;
+        }
+
+        //play gun audio (stop first in case the audio is already playing so that the two don't overlap)
+        GetComponent<AudioSource>().Stop();
+        GetComponent<AudioSource>().Play();
+
         //damage enemies in list that come in line of raycast (will only damage the first in line)
         foreach (var enemy in enemyManager.enemiesInTrigger)
         {
