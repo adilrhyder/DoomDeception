@@ -15,7 +15,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         health = maxHealth;
-        armor = maxArmor; // for testing purposes 
+        // armor = maxArmor; // for testing purposes 
     }
 
     // Update is called once per frame
@@ -58,6 +58,7 @@ public class PlayerHealth : MonoBehaviour
             health -= damage;
         }
 
+        //reset scene if player health drops to zero
         if (health <= 0)
         {
             Debug.Log("Player is dead");
@@ -68,7 +69,8 @@ public class PlayerHealth : MonoBehaviour
     }
 
     public void GiveHealth(int amount, GameObject pickup)
-    {
+    {   
+        //destroy pickup object (reference passed to function) if it is used
         if (health < maxHealth)
         {
             health += amount;

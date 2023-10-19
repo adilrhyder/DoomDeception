@@ -11,24 +11,20 @@ public class Gun : MonoBehaviour
     public float verticalRange = 20f;
     public float gunShotRadius = 20f;   //radius at which enemies can hear gunshot
     
-    private BoxCollider gunTrigger;
-    //get list to manage enemies in range of gun (we attach this variable in Unity by dragging and dropping "EnemyManager" in this field)
+    private BoxCollider gunTrigger;     //get list to manage enemies in range of gun (we attach this variable in Unity by dragging and dropping "EnemyManager" in this field)
     public EnemyManager enemyManager;
     
-    //variable defining rate at which gun can fire
-    public float fireRate = 1f;
-    public int maxAmmo; 
-    //to keep track of fire rate
-    private float nextTimeToFire = 0f;  //don't need to do this (0 is assigned by default)
+    public float fireRate = 1f;         //variable defining rate at which gun can fire
+    private float nextTimeToFire = 0f;  //to keep track of fire rate - don't need to do this (0 is assigned by default)
     
-    //damage of gun (set to 2 by default - enemy health is also 2 for now)
-    public float bigDamage = 2f;
+    public int maxAmmo; 
+    private int ammo;
+
+    public float bigDamage = 2f;        //damage of gun (set to 2 by default - enemy health is also 2 for now)
     public float smallDamage = 1f;
     
-    //layer mask for raycast of gun projectile
-    public LayerMask raycastLayerMask;
-    //layer mask for enemy
-    public LayerMask enemyLayerMask;
+    public LayerMask raycastLayerMask;  //layer mask for raycast of gun projectile
+    public LayerMask enemyLayerMask;    //layer mask for enemy
 
 
     // Start is called before the first frame update
@@ -43,7 +39,7 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0) && (Time.time > nextTimeToFire))    //if mouse button is down/clicked and the time since the game has started is greater than the last time gun was fired
+        if (Input.GetMouseButton(0) && (Time.time > nextTimeToFire) && (ammo > 0))    //if mouse button is down/clicked and the time since the game has started is greater than the last time gun was fired
         {
             Fire();
         }
@@ -109,6 +105,23 @@ public class Gun : MonoBehaviour
 
         //reset timer
         nextTimeToFire = Time.time + fireRate;
+
+        //deduct ammo
+        ammo--;
+    }
+
+    public void GiveAmmo(int amount, GameObject pickup)
+    {
+       if (ammo < maxAmmo)
+       {
+            ammo += amount;
+            Destroy(pickup);
+       } 
+
+       if (ammo > maxAmmo)
+       {
+            ammo = maxAmmo;
+       }
     }
 
     private void OnTriggerEnter(Collider other)
