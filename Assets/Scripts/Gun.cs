@@ -17,6 +17,7 @@ public class Gun : MonoBehaviour
     
     //variable defining rate at which gun can fire
     public float fireRate = 1f;
+    public int maxAmmo; 
     //to keep track of fire rate
     private float nextTimeToFire = 0f;  //don't need to do this (0 is assigned by default)
     
