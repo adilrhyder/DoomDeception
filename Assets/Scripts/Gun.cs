@@ -18,7 +18,7 @@ public class Gun : MonoBehaviour
     private float nextTimeToFire = 0f;  //to keep track of fire rate - don't need to do this (0 is assigned by default)
     
     public int maxAmmo; 
-    private int ammo;
+    private int ammo = 100;             //setting to 100 as default
 
     public float bigDamage = 2f;        //damage of gun (set to 2 by default - enemy health is also 2 for now)
     public float smallDamage = 1f;
