@@ -14,8 +14,8 @@ public class PlayerMove : MonoBehaviour
     //variable to access head bob animation (public variables can be assigned values in the inspector)
     public Animator camAnim;
 
-    //boolean to keep track of whether character is walking
-    private bool isWalking;
+    //boolean to keep track of whether character is walking (set to public so gunAnim can access it)
+    public bool isWalking;
 
     //use vector3 variables to store player movement in x and y (and will store variable for gravity separately)
     private Vector3 inputVector;        //for passing to GetInput
