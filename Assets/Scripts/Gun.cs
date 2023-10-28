@@ -14,7 +14,7 @@ public class Gun : MonoBehaviour
     private BoxCollider gunTrigger;     //get list to manage enemies in range of gun (we attach this variable in Unity by dragging and dropping "EnemyManager" in this field)
     public EnemyManager enemyManager;
     
-    public float fireRate = 1f;         //variable defining rate at which gun can fire
+    public float fireRate = 1.1f;         //variable defining rate at which gun can fire
     private float nextTimeToFire = 0f;  //to keep track of fire rate - don't need to do this (0 is assigned by default)
     
     public int maxAmmo; 
@@ -26,6 +26,7 @@ public class Gun : MonoBehaviour
     public LayerMask raycastLayerMask;  //layer mask for raycast of gun projectile
     public LayerMask enemyLayerMask;    //layer mask for enemy
 
+    public bool isFiring;               //boolean variable for gun animation
 
     // Start is called before the first frame update
     void Start()
@@ -39,8 +40,11 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isFiring = false;
+
         if (Input.GetMouseButton(0) && (Time.time > nextTimeToFire) && (ammo > 0))    //if mouse button is down/clicked and the time since the game has started is greater than the last time gun was fired
         {
+            isFiring = true;
             Fire();
         }
     }
@@ -48,6 +52,7 @@ public class Gun : MonoBehaviour
     //fire function to fire gun (pew pew)
     void Fire()
     {
+        Debug.Log("Firing at Time: " + Time.time);
         //simulate gunshot radius -> start at player position i.e. transform.position, extend over gunshot radius, and detect enemy layer mask
         //overlapsphere returns an array of colliders that fall within the given radius
         Collider[] enemyColliders;
@@ -105,6 +110,9 @@ public class Gun : MonoBehaviour
 
         //reset timer
         nextTimeToFire = Time.time + fireRate;
+        Debug.Log("Fire Rate: " + fireRate);
+        Debug.Log("Next Time to Fire: " + nextTimeToFire);
+
 
         //deduct ammo
         ammo--;

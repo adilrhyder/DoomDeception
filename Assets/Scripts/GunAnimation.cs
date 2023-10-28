@@ -7,6 +7,7 @@ public class GunAnimation : MonoBehaviour
     // Start is called before the first frame update
 
     bool isWalking;
+    bool isFiring;
     public Animator gunAnim;
 
 
@@ -17,7 +18,13 @@ public class GunAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isWalking = GetComponentInParent<PlayerMove>().isWalking;
-        gunAnim.SetBool("isWalking", isWalking);
+        isFiring = GetComponentInParent<Gun>().isFiring;
+        gunAnim.SetBool("isFiring", isFiring);
+            
+        if (!isFiring)
+        {
+            isWalking = GetComponentInParent<PlayerMove>().isWalking;
+            gunAnim.SetBool("isWalking", isWalking);
+        }
     }
 }
