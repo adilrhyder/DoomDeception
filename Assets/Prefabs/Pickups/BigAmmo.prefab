@@ -67,8 +67,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f56f143168be02045a2276b3f97a2f8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isHealth: 1
-  isAmmo: 0
+  isHealth: 0
+  isAmmo: 1
   isArmor: 0
   amount: 10
 --- !u!1 &5901652336023151638
