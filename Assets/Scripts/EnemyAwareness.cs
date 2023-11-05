@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAwareness : MonoBehaviour
 {
-    public Material aggroMat;
+    // public Material aggroMat;
     public bool isAggro = false;    //public because other scripts are going to need to reference this 
     private Transform playersTransform;
     public float awarenessRadius = 8f;   //radius at which player is detected
@@ -28,7 +28,7 @@ public class EnemyAwareness : MonoBehaviour
         //change color if bool set
         if (isAggro)
         {
-            GetComponent<MeshRenderer>().material = aggroMat;
+            // GetComponent<MeshRenderer>().material = aggroMat;
         }
     }
 }
