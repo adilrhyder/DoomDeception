@@ -175,9 +175,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorAnim: {fileID: 5261268120772238290}
   areaToSpawn: {fileID: 0}
-  requiresKey: 0
+  playerUI: {fileID: 0}
+  requiresKey: 1
   reqRed: 0
-  reqBlue: 0
+  reqBlue: 1
   reqGreen: 0
 --- !u!1 &4892155128928558624
 GameObject:

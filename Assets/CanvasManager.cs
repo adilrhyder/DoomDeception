@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;  
+using TMPro;
+using System;
 
 public class CanvasManager : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class CanvasManager : MonoBehaviour
     public GameObject redKey; 
     public GameObject blueKey; 
     public GameObject greenKey; 
+
+    //booleans for all types of keys
+    private bool hasRed = false;
+    private bool hasBlue = false;
+    public bool hasGreen = false;
 
 
     // singleton in order to easily access from other scripts without referencing the other scripts
@@ -78,17 +84,23 @@ public class CanvasManager : MonoBehaviour
     {
         if(keyColor == "red")
         {
-            redKey.SetActive(true);
+            redKey.SetActive(!hasRed);
+            hasRed = !hasRed;
+            Debug.Log("hasRed: " + hasRed);
         }
 
         if(keyColor == "blue")
         {
-            blueKey.SetActive(true);
+            blueKey.SetActive(!hasBlue);
+            hasBlue = !hasBlue;
+            Debug.Log("hasBlue: " + hasBlue);
         }
 
         if(keyColor == "green")
         {
-            greenKey.SetActive(true);
+            greenKey.SetActive(!hasGreen);
+            hasGreen = !hasGreen;
+            Debug.Log("hasGreen: " + hasGreen);
         }
     }
 
