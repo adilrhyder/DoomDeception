@@ -62,7 +62,7 @@ public class Door : MonoBehaviour
                     doorAnim.SetTrigger("OpenDoor");
 
                     // //spawn enemies in area
-                    // areaToSpawn.SetActive(true);
+                    areaToSpawn.SetActive(true);
 
                     //remove greenkey from inventory
                     other.GetComponent<PlayerInventory>().hasGreen = false;
