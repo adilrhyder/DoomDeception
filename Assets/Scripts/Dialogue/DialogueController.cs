@@ -71,8 +71,10 @@ public class DialogueController : MonoBehaviour
             gameObject.SetActive(true);
         }
 
-        // //stop the player from moving
+        //stop the player from moving
         player.GetComponent<PlayerMove>().enabled = false;
+        //stop the player from using their gun
+        player.GetComponentInChildren<Gun>().enabled = false;
 
         //update the speaker name
         NPCNameText.text = dialogueText.speakerName;
@@ -92,8 +94,12 @@ public class DialogueController : MonoBehaviour
         //return bool to false
         conversationEnded = false;
 
-        // //allow the player to move again
+        //allow the player to move again
         player.GetComponent<PlayerMove>().enabled = true;
+        //allow the player to use their gun again
+        player.GetComponentInChildren<Gun>().enabled = true;
+
+
 
         //deactivate gameObject
         if (gameObject.activeSelf)
