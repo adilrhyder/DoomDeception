@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer _interactSprite;
+
+
     //list storing enemies (we attach this variable in Unity by dragging and dropping "EnemyManager" in this field FOR EVERY ENEMY)
     public EnemyManager enemyManager;
     private Animator spriteAnim; 
     private AngleToPlayer angleToPlayer;
-    private float enemyHealth = 2f; //variable for enemy health
+    private float enemyHealth = 3f; //variable for enemy health
 
     public GameObject gunHitEffect;
 
@@ -18,7 +21,9 @@ public class Enemy : MonoBehaviour
         spriteAnim = GetComponentInChildren<Animator>();
         angleToPlayer = GetComponent<AngleToPlayer>();
 
-        enemyManager = FindObjectOfType<EnemyManager>();   
+        enemyManager = FindObjectOfType<EnemyManager>();  
+        _interactSprite.gameObject.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -34,6 +39,11 @@ public class Enemy : MonoBehaviour
             
             //destroy game object 
             Destroy(gameObject);
+        }
+
+        if ((enemyHealth <= 2f) && (!_interactSprite.gameObject.activeSelf))
+        {
+            _interactSprite.gameObject.SetActive(true);
         }
 
         // any animation we call will have updated index

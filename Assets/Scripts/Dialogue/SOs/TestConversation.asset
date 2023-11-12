@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beedc67a7f89b5f43972d134d6a7b2cc, type: 3}
   m_Name: TestConversation
   m_EditorClassIdentifier: 
-  speakerName: Jeff
+  speakerName: INTERCOMM
   paragraphs:
-  - My name is Jeff...
-  - '- Channing Tatum'
+  - '*BEEP*'
+  - 'Your presence is noted. '
+  - 'Proceed through the green door. Find the red key. Open the door. '
+  - ' Kill all in your path.'
+  - '*BEEP*'

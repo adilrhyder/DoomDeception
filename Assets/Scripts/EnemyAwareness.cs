@@ -49,7 +49,7 @@ public class EnemyAwareness : MonoBehaviour
         else
         {
             // If the player is outside the awarenessRadius, reset the aggro and damageCounter
-            isAggro = false;
+            // isAggro = false;
             damageCounter = timeBetweenDamage;
         }
 

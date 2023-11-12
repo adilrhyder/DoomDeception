@@ -27,7 +27,7 @@ public class DialogueController : MonoBehaviour
     public void DisplayNextParagraph(DialogueText dialogueText)
     {
         //if nothing in queue
-        print("here");
+        // print("here");
         if (paragraphs.Count == 0)
         {
             if (!conversationEnded)
