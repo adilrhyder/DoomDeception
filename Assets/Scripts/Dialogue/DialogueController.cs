@@ -8,14 +8,21 @@ public class DialogueController : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI NPCNameText;
     [SerializeField] private TextMeshProUGUI NPCDialogueText;
+    [SerializeField] private float typeSpeed = 10;
 
     public GameObject player;
 
     private Queue<string> paragraphs = new Queue<string>();
 
     private bool conversationEnded;
+    private bool isTyping;
 
     private string p;
+
+    private Coroutine typeDialogueCoroutine;
+
+    private const string HTML_ALPHA = "<color=#00000000>";
+    private const float MAX_TYPE_TIME = 0.1f;
 
     public void DisplayNextParagraph(DialogueText dialogueText)
     {
@@ -28,7 +35,7 @@ public class DialogueController : MonoBehaviour
                 //start convo
                 StartConversation(dialogueText);
             }
-            else
+            else if (conversationEnded && !isTyping)
             {
                 //end convo and leave
                 EndConversation();
@@ -37,10 +44,19 @@ public class DialogueController : MonoBehaviour
         }
 
         //if there is something in the queue
-        p = paragraphs.Dequeue();
+        if (!isTyping)
+        {
+            p = paragraphs.Dequeue();
+            typeDialogueCoroutine = StartCoroutine(TypeDialogueText(p));
+        }
+        //else conversation is being typed out
+        else
+        {
+            FinishParagraphEarly();
+        }
 
-        //update converstaion text
-        NPCDialogueText.text = p;
+        //update converstaion text (old way of doing it -- allows for spillover)
+        // NPCDialogueText.text = p;
 
         if (paragraphs.Count == 0)
         {
@@ -84,5 +100,45 @@ public class DialogueController : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+    }
+
+    //this function sets an alpha character that moves along an already printed line
+    //this has the benefit of not causing a word to be spilt over to the next line if 
+    //it does not fit. It's neater since all text is already printed and in its right place. 
+    private IEnumerator TypeDialogueText(string p)
+    {
+        isTyping = true;
+
+        NPCDialogueText.text = "";
+
+        string originalText = p;
+        string displayedText = "";
+        int alphaIndex = 0;
+
+        foreach (char c in p.ToCharArray())
+        {
+            alphaIndex++;
+            NPCDialogueText.text = originalText;
+
+            //moves alpha character forward
+            displayedText = NPCDialogueText.text.Insert(alphaIndex, HTML_ALPHA);
+            NPCDialogueText.text = displayedText;
+
+            yield return new WaitForSeconds(MAX_TYPE_TIME/typeSpeed);
+        }
+
+        isTyping = false;
+    }
+
+    private void FinishParagraphEarly()
+    {
+        //stop the coroutine
+        StopCoroutine(typeDialogueCoroutine);
+
+        //finish displaying text
+        NPCDialogueText.text = p;
+
+        //update isTyping bool
+        isTyping = false;
     }
 }
