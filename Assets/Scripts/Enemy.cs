@@ -15,6 +15,10 @@ public class Enemy : MonoBehaviour
 
     public GameObject gunHitEffect;
 
+    private const float INTERACT_DISTANCE = 5f;
+    private Transform playersTransform;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +28,7 @@ public class Enemy : MonoBehaviour
         enemyManager = FindObjectOfType<EnemyManager>();  
         _interactSprite.gameObject.SetActive(false);
 
+        playersTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
@@ -46,6 +51,16 @@ public class Enemy : MonoBehaviour
             _interactSprite.gameObject.SetActive(true);
         }
 
+        if ((Input.GetKeyDown("c")) && (IsWithinInteractDistance()) && (enemyHealth <= 2f))
+        {
+            //instant kill enemy
+            //remove this object from list 
+            enemyManager.RemoveEnemy(this);
+            
+            //destroy game object 
+            Destroy(gameObject);
+        }
+
         // any animation we call will have updated index
     }
 
@@ -56,5 +71,19 @@ public class Enemy : MonoBehaviour
         
         //update enemy health
         enemyHealth -= damage;
+    }
+
+    private bool IsWithinInteractDistance()
+    {
+        var dist = Vector3.Distance(transform.position, playersTransform.position);
+
+        if (dist < INTERACT_DISTANCE)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
