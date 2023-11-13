@@ -11,9 +11,10 @@ public class Enemy : MonoBehaviour
     public EnemyManager enemyManager;
     private Animator spriteAnim; 
     private AngleToPlayer angleToPlayer;
-    private float enemyHealth = 3f; //variable for enemy health
+    private float enemyHealth = 2f; //variable for enemy health
 
     public GameObject gunHitEffect;
+    private float instant_kill_level = 1f; 
 
     private const float INTERACT_DISTANCE = 5f;
     private Transform playersTransform;
@@ -46,12 +47,12 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if ((enemyHealth <= 2f) && (!_interactSprite.gameObject.activeSelf))
+        if ((enemyHealth <= instant_kill_level) && (!_interactSprite.gameObject.activeSelf))
         {
             _interactSprite.gameObject.SetActive(true);
         }
 
-        if ((Input.GetKeyDown("c")) && (IsWithinInteractDistance()) && (enemyHealth <= 2f))
+        if ((Input.GetKeyDown("c")) && (IsWithinInteractDistance()) && (enemyHealth <= instant_kill_level))
         {
             //instant kill enemy
             //remove this object from list 
