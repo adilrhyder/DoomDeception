@@ -16,6 +16,8 @@ MonoBehaviour:
   paragraphs:
   - '*BEEP*'
   - 'Your presence is noted. '
-  - 'Proceed through the green door. Find the red key. Open the door. '
+  - 'Your objective is to proceed through the blue door. '
+  - Begin by opening the green door behind the intercomm.
+  - Find the key to the blue door and proceed.
   - ' Kill all in your path.'
   - '*BEEP*'
