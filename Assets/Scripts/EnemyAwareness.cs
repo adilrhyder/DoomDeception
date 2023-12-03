@@ -32,10 +32,18 @@ public class EnemyAwareness : MonoBehaviour
         // Calculating distance between player and enemy
         var dist = Vector3.Distance(transform.position, playersTransform.position);
 
+        if (GetComponentInParent<Enemy>().isDefeated)
+        {
+            isAggro = false;
+        }
+
         // If distance is within radius of enemy's awareness, set bool
         if (dist < awarenessRadius)
         {
-            isAggro = true;
+            if (!(GetComponentInParent<Enemy>().isDefeated))
+            {
+                isAggro = true;
+            }
 
             if (dist <= damageRadius)
             {

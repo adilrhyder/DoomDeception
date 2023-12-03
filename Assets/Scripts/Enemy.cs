@@ -2,43 +2,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : NPC, ITalkable
 {
-    [SerializeField] private SpriteRenderer _interactSprite;
+    public SpriteRenderer _interactSpriteKill;
 
 
     //list storing enemies (we attach this variable in Unity by dragging and dropping "EnemyManager" in this field FOR EVERY ENEMY)
     public EnemyManager enemyManager;
     private Animator spriteAnim; 
+
     private AngleToPlayer angleToPlayer;
-    private float enemyHealth = 2f; //variable for enemy health
+    public float enemyHealth = 2f; //variable for enemy health
 
     public GameObject gunHitEffect;
     private float instant_kill_level = 1f; 
 
     private const float INTERACT_DISTANCE = 5f;
-    private Transform playersTransform;
 
+
+    private bool dialogueSeen = false;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         spriteAnim = GetComponentInChildren<Animator>();
         angleToPlayer = GetComponent<AngleToPlayer>();
 
         enemyManager = FindObjectOfType<EnemyManager>();  
-        _interactSprite.gameObject.SetActive(false);
+        _interactSpriteKill.gameObject.SetActive(false);
 
         playersTransform = GameObject.FindGameObjectWithTag("Player").transform;
+
+        isDefeated = false;
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        base.Update();
 
         spriteAnim.SetFloat("spriteRot", angleToPlayer.lastIndex);
+        
         //check if enemy health has dropped to zero
-        if (enemyHealth <= 0)
+        if ((enemyHealth <= 0) && (!isTalkable))
         {
             //remove this object from list 
             enemyManager.RemoveEnemy(this);
@@ -47,12 +54,28 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if ((enemyHealth <= instant_kill_level) && (!_interactSprite.gameObject.activeSelf))
+        //show dialogue prompt after enemy is defeated
+        if ((enemyHealth <= 0) && (isTalkable))
         {
-            _interactSprite.gameObject.SetActive(true);
+            isDefeated = true;
         }
 
-        if ((Input.GetKeyDown("c")) && (IsWithinInteractDistance()) && (enemyHealth <= instant_kill_level))
+        //player has seen dialogue prompt and shot again
+        if ((enemyHealth <= -1) && (isDefeated))
+        {
+            //remove this object from list 
+            enemyManager.RemoveEnemy(this);
+            
+            //destroy game object 
+            Destroy(gameObject);
+        }
+
+        if ((enemyHealth <= instant_kill_level) && (!_interactSpriteKill.gameObject.activeSelf) && (!isTalkable))
+        {
+            _interactSpriteKill.gameObject.SetActive(true);
+        }
+
+        if ((Input.GetKeyDown("c")) && (IsWithinInteractDistance()) && (enemyHealth <= instant_kill_level) && (!isTalkable))
         {
             //instant kill enemy
             //remove this object from list 
@@ -86,5 +109,22 @@ public class Enemy : MonoBehaviour
         {
             return false;
         }
+    }
+
+
+    //dialogue stuff
+    [SerializeField] private DialogueText dialogueText;
+    [SerializeField] private DialogueController dialogueController;
+
+    //since we're importing from NPC, we have to implement the interact function
+    public override void Interact()
+    {
+        Talk(dialogueText);
+    }
+
+    public void Talk(DialogueText dialogueText)
+    {
+        //start conversation
+        dialogueController.DisplayNextParagraph(dialogueText);
     }
 }

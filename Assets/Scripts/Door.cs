@@ -6,6 +6,8 @@ public class Door : MonoBehaviour
 {
     public Animator doorAnim; 
     public GameObject areaToSpawn;
+    public GameObject areaToSpawn_alternate;
+
 
     private GameObject playerUI;
 
@@ -80,7 +82,18 @@ public class Door : MonoBehaviour
                 doorAnim.SetTrigger("OpenDoor");
 
                 //spawn enemies in area
-                areaToSpawn.SetActive(true);
+                if (other.GetComponent<PlayerInventory>().hasGreen)
+                {
+                    Debug.Log("Turning off");
+                    areaToSpawn_alternate.SetActive(false);
+                    areaToSpawn.SetActive(true);
+                }
+                else
+                {
+                    Debug.Log("Turning on");
+                    areaToSpawn.SetActive(false);
+                    areaToSpawn_alternate.SetActive(true);
+                }
             }
         }
     }

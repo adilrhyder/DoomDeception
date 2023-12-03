@@ -12,12 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beedc67a7f89b5f43972d134d6a7b2cc, type: 3}
   m_Name: TestConversation
   m_EditorClassIdentifier: 
-  speakerName: INTERCOMM
+  speakerName: Guy
   paragraphs:
   - '*BEEP*'
-  - 'Your presence is noted. '
-  - 'Your objective is to proceed through the blue door. '
-  - Begin by opening the green door behind the intercomm.
-  - Find the key to the blue door and proceed.
-  - ' Kill all in your path.'
+  - What-
+  - You HAVE the green key?!
   - '*BEEP*'
