@@ -19,12 +19,18 @@ public abstract class NPC : MonoBehaviour, IInteractable
     //variable for storing whether this enemy is talkable
     public bool isTalkable;
 
+    //flag to recognize final boss (should be talkable before attack)
+    public bool isFinalBoss;
+
+    //flag to recognize intercomms
+    public bool isIntercomm;
+
     private const float INTERACT_DISTANCE = 5f;
 
     virtual protected void Start()
     {
         playersTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        _interactSprite.gameObject.SetActive(false);
+        _interactSprite.gameObject.SetActive(true);
     }
 
     virtual protected void Update()
@@ -34,21 +40,22 @@ public abstract class NPC : MonoBehaviour, IInteractable
         // {
         //    //interact method called 
         // }
-        if ((Input.GetKeyDown("e")) && (IsWithinInteractDistance()) && (isDefeated))
+        if ((Input.GetKeyDown("e")) && (IsWithinInteractDistance()) && (isDefeated || isIntercomm))
         {
             Interact();
             //call interact method
         }
 
-        if ((_interactSprite.gameObject.activeSelf) && (!IsWithinInteractDistance()) && (!isTalkable))
+        // Debug.Log("")
+        if ((_interactSprite.gameObject.activeSelf) && (!IsWithinInteractDistance()) && (!isDefeated))
         {
-            Debug.Log("Turning off");
+            // Debug.Log("Turning off");
             //turn off interact sprite if not in range of NPC
             _interactSprite.gameObject.SetActive(false);
         }
-        else if ((!_interactSprite.gameObject.activeSelf) && ((IsWithinInteractDistance()) || (isDefeated)))
+        else if ((!_interactSprite.gameObject.activeSelf) && ((IsWithinInteractDistance()) || (isDefeated)) && (!isFinalBoss))
         {
-            Debug.Log("Turning on");
+            // Debug.Log("Turning on");
             //turn on interact sprite if in range of NPC
             _interactSprite.gameObject.SetActive(true);
         }

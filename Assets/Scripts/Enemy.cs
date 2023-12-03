@@ -12,7 +12,9 @@ public class Enemy : NPC, ITalkable
     private Animator spriteAnim; 
 
     private AngleToPlayer angleToPlayer;
-    public float enemyHealth = 2f; //variable for enemy health
+    public float enemyHealth; //variable for enemy health
+    public float maxEnemyHealth; //variable for enemy health
+
 
     public GameObject gunHitEffect;
     private float instant_kill_level = 1f; 
@@ -20,12 +22,14 @@ public class Enemy : NPC, ITalkable
     private const float INTERACT_DISTANCE = 5f;
 
 
-    private bool dialogueSeen = false;
 
     // Start is called before the first frame update
     protected override void Start()
     {
-        base.Start();
+        if (isTalkable)
+        {
+            base.Start();
+        }
         spriteAnim = GetComponentInChildren<Animator>();
         angleToPlayer = GetComponent<AngleToPlayer>();
 
@@ -34,18 +38,24 @@ public class Enemy : NPC, ITalkable
 
         playersTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
-        isDefeated = false;
+        if (!isFinalBoss)
+        {
+            isDefeated = false;
+        }
     }
 
     // Update is called once per frame
     protected override void Update()
     {
-        base.Update();
+        if (isTalkable)
+        {
+            base.Update();
+        }
 
         spriteAnim.SetFloat("spriteRot", angleToPlayer.lastIndex);
         
         //check if enemy health has dropped to zero
-        if ((enemyHealth <= 0) && (!isTalkable))
+        if ((enemyHealth <= 0) && ((!isTalkable) || (isFinalBoss)))
         {
             //remove this object from list 
             enemyManager.RemoveEnemy(this);
@@ -55,9 +65,20 @@ public class Enemy : NPC, ITalkable
         }
 
         //show dialogue prompt after enemy is defeated
-        if ((enemyHealth <= 0) && (isTalkable))
+        if ((enemyHealth <= 0) && (isTalkable) && (!isFinalBoss))
         {
             isDefeated = true;
+        }
+
+        
+        Debug.Log("enemyHealth in Enemy: " + enemyHealth);
+        Debug.Log("maxEnemyHealth in Enemy: " + maxEnemyHealth);
+        Debug.Log("isDefeated: " + isDefeated);
+        //to allow for us to talk to enemy before attacking it
+        if ((enemyHealth < maxEnemyHealth) && (enemyHealth > 0) && isFinalBoss && (isDefeated))
+        {
+            // Debug.Log("Fixed isDefeated");
+            isDefeated = false;
         }
 
         //player has seen dialogue prompt and shot again
@@ -95,6 +116,8 @@ public class Enemy : NPC, ITalkable
         
         //update enemy health
         enemyHealth -= damage;
+
+        Debug.Log("Enemy Health: " + enemyHealth);
     }
 
     private bool IsWithinInteractDistance()

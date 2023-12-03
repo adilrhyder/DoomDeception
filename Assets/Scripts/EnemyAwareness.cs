@@ -36,6 +36,11 @@ public class EnemyAwareness : MonoBehaviour
         {
             isAggro = false;
         }
+        else if (GetComponentInParent<Enemy>().isFinalBoss && (!GetComponentInParent<Enemy>().isDefeated))
+        {
+            isAggro = true;
+            // Debug.Log("IsAggro is true");
+        }
 
         // If distance is within radius of enemy's awareness, set bool
         if (dist < awarenessRadius)
@@ -43,16 +48,17 @@ public class EnemyAwareness : MonoBehaviour
             if (!(GetComponentInParent<Enemy>().isDefeated))
             {
                 isAggro = true;
-            }
-
-            if (dist <= damageRadius)
-            {
-                if (damageCounter >= timeBetweenDamage)
+                
+                if (dist <= damageRadius)
                 {
-                    playerHealth.DamagePlayer(damageAmount);
-                    damageCounter = 0f;  // Reset the counter after dealing damage
+                    if (damageCounter >= timeBetweenDamage)
+                    {
+                        playerHealth.DamagePlayer(damageAmount);
+                        damageCounter = 0f;  // Reset the counter after dealing damage
+                    }
                 }
             }
+
         }
         else
         {

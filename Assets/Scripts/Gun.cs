@@ -54,7 +54,7 @@ public class Gun : MonoBehaviour
     //fire function to fire gun (pew pew)
     void Fire()
     {
-        Debug.Log("Firing at Time: " + Time.time);
+        // Debug.Log("Firing at Time: " + Time.time);
         //simulate gunshot radius -> start at player position i.e. transform.position, extend over gunshot radius, and detect enemy layer mask
         //overlapsphere returns an array of colliders that fall within the given radius
         Collider[] enemyColliders;
@@ -112,8 +112,8 @@ public class Gun : MonoBehaviour
 
         //reset timer
         nextTimeToFire = Time.time + fireRate;
-        Debug.Log("Fire Rate: " + fireRate);
-        Debug.Log("Next Time to Fire: " + nextTimeToFire);
+        // Debug.Log("Fire Rate: " + fireRate);
+        // Debug.Log("Next Time to Fire: " + nextTimeToFire);
 
 
         //deduct ammo
