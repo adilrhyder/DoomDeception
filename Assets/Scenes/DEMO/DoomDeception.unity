@@ -314,7 +314,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8196542331155489960, guid: 57819b34126d1b643a20df7b937f3415, type: 3}
+      propertyPath: isDefeated
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8196542331155489960, guid: 57819b34126d1b643a20df7b937f3415, type: 3}
       propertyPath: isTalkable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8196542331155489960, guid: 57819b34126d1b643a20df7b937f3415, type: 3}
+      propertyPath: isIntercomm
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8196542331155489960, guid: 57819b34126d1b643a20df7b937f3415, type: 3}
@@ -589,7 +597,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 192574644995660967, guid: 444b011cd9f2e144c8b38cdece24caab, type: 3}
       propertyPath: m_Name
-      value: TalkableEnemy
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 192574644995660967, guid: 444b011cd9f2e144c8b38cdece24caab, type: 3}
       propertyPath: m_IsActive
@@ -648,6 +656,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5996906883221479576, guid: 444b011cd9f2e144c8b38cdece24caab, type: 3}
+      propertyPath: isFinalBoss
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5996906883221479576, guid: 444b011cd9f2e144c8b38cdece24caab, type: 3}
       propertyPath: dialogueText
       value: 
       objectReference: {fileID: 11400000, guid: 1e8b8679214d84641a207b3c9567b891, type: 2}
@@ -655,6 +667,10 @@ PrefabInstance:
       propertyPath: enemyManager
       value: 
       objectReference: {fileID: 1505144291}
+    - target: {fileID: 5996906883221479576, guid: 444b011cd9f2e144c8b38cdece24caab, type: 3}
+      propertyPath: maxEnemyHealth
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5996906883221479576, guid: 444b011cd9f2e144c8b38cdece24caab, type: 3}
       propertyPath: _interactSprite
       value: 
@@ -836,6 +852,10 @@ PrefabInstance:
     - target: {fileID: 4065778995615634956, guid: 6669b4384a773cf40aff2ecdf09760ca, type: 3}
       propertyPath: m_Name
       value: GreenKeyPickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 4065778995615634956, guid: 6669b4384a773cf40aff2ecdf09760ca, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5057754212695394264, guid: 6669b4384a773cf40aff2ecdf09760ca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2691,6 +2711,10 @@ PrefabInstance:
     - target: {fileID: 2018612190022976288, guid: 203c44fbe8b1c19428d252d8d4a4596f, type: 3}
       propertyPath: m_Name
       value: GreenDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018612190022976288, guid: 203c44fbe8b1c19428d252d8d4a4596f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7469733114538635415, guid: 203c44fbe8b1c19428d252d8d4a4596f, type: 3}
       propertyPath: m_LocalPosition.x
