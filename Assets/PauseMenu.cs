@@ -33,16 +33,9 @@ public class PauseMenu : MonoBehaviour
             if(isPaused)
             {
                 Resume();
-                
-
-
             }
             else
             {    
-                playerUI.SetActive(false);
-                player.transform.GetChild(1).gameObject.SetActive(false);
-                player.transform.GetChild(2).gameObject.SetActive(false);
-                player.GetComponent<MouseMovement>().isPaused = true;
                 Pause();
             }
         }   
@@ -62,7 +55,12 @@ public class PauseMenu : MonoBehaviour
     }
 
     void Pause()
-    {
+    {   
+        playerUI.SetActive(false);
+        player.transform.GetChild(1).gameObject.SetActive(false);
+        player.transform.GetChild(2).gameObject.SetActive(false);
+        player.GetComponent<MouseMovement>().isPaused = true;
+
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f; 
         isPaused = true;

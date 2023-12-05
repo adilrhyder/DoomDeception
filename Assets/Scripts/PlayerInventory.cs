@@ -8,6 +8,8 @@ public class PlayerInventory : MonoBehaviour
     public bool hasGreen;
     public bool hasBlue;
 
+    public bool hasKilled;
+
     // Start is called before the first frame update
     void Start()
     {

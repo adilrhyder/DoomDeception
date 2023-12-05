@@ -8,6 +8,15 @@ public class Door : MonoBehaviour
     public GameObject areaToSpawn;
     public GameObject areaToSpawn_alternate;
 
+    public GameObject areaToSpawnOnReturn;
+    public GameObject areaToSpawnOnReturn_alternate;
+
+    public bool checksDeath;
+    public bool enemyKilled;
+
+    public bool checksRedKey;
+    public bool checksBlueKey;
+    public bool checksGreenKey;
 
     private GameObject playerUI;
 
@@ -40,6 +49,20 @@ public class Door : MonoBehaviour
 
                     //remove key from UI
                     playerUI.GetComponent<CanvasManager>().UpdateKeys("red");
+
+                    if (checksDeath)
+                    {
+                        if (other.GetComponent<PlayerInventory>().hasKilled)
+                        {
+                            areaToSpawn.SetActive(false);
+                            areaToSpawn_alternate.SetActive(true);
+                        }
+                        else
+                        {
+                            areaToSpawn_alternate.SetActive(false);
+                            areaToSpawn.SetActive(true);
+                        }
+                    }
                 }
 
                 if (reqBlue && other.GetComponent<PlayerInventory>().hasBlue)
@@ -55,7 +78,22 @@ public class Door : MonoBehaviour
 
                     //remove key from UI
                     playerUI.GetComponent<CanvasManager>().UpdateKeys("blue");
+
+                    if (checksDeath)
+                    {
+                        if (other.GetComponent<PlayerInventory>().hasKilled)
+                        {
+                            areaToSpawn.SetActive(false);
+                            areaToSpawn_alternate.SetActive(true);
+                        }
+                        else
+                        {
+                            areaToSpawn_alternate.SetActive(false);
+                            areaToSpawn.SetActive(true);
+                        }
+                    }
                 }
+                
 
                 if (reqGreen && other.GetComponent<PlayerInventory>().hasGreen)
                 {
@@ -73,26 +111,93 @@ public class Door : MonoBehaviour
                     // print("Updated Inventory");
                     playerUI.GetComponent<CanvasManager>().UpdateKeys("green");
 
+                    if (checksDeath)
+                    {
+                        if (other.GetComponent<PlayerInventory>().hasKilled)
+                        {
+                            areaToSpawn.SetActive(false);
+                            areaToSpawn_alternate.SetActive(true);
+                        }
+                        else
+                        {
+                            areaToSpawn_alternate.SetActive(false);
+                            areaToSpawn.SetActive(true);
+                        }
+                    }
                 }
+
+                requiresKey = false;
             }
+            
             else
             {
                 print("No key required!");
                 //open door
-                doorAnim.SetTrigger("OpenDoor");
+                // doorAnim.SetTrigger("OpenDoor");
 
                 //spawn enemies in area
-                if (other.GetComponent<PlayerInventory>().hasGreen)
+                if (checksDeath)
                 {
-                    Debug.Log("Turning off");
-                    areaToSpawn_alternate.SetActive(false);
-                    areaToSpawn.SetActive(true);
+                    if (other.GetComponent<PlayerInventory>().hasKilled)
+                    {
+                        areaToSpawn.SetActive(false);
+                        areaToSpawn_alternate.SetActive(true);
+                    }
+                    else
+                    {
+                        areaToSpawn_alternate.SetActive(false);
+                        areaToSpawn.SetActive(true);
+                    }
+                }
+                else if (checksBlueKey)
+                {
+                    if (other.GetComponent<PlayerInventory>().hasBlue)
+                    {
+                        Debug.Log("Turning off");
+                        areaToSpawnOnReturn_alternate.SetActive(false);
+                        areaToSpawnOnReturn.SetActive(true);
+                    }
+                    else
+                    {
+                        Debug.Log("Turning on");
+                        areaToSpawnOnReturn.SetActive(false);
+                        areaToSpawnOnReturn_alternate.SetActive(true);
+                    }
+                }
+                else if (checksRedKey)
+                {
+                    if (other.GetComponent<PlayerInventory>().hasRed)
+                    {
+                        Debug.Log("Turning off");
+                        areaToSpawn_alternate.SetActive(false);
+                        areaToSpawn.SetActive(true);
+                    }
+                    else
+                    {
+                        Debug.Log("Turning on");
+                        areaToSpawn.SetActive(false);
+                        areaToSpawn_alternate.SetActive(true);
+                    }
+                }
+                else if (checksGreenKey)
+                {
+                    if (other.GetComponent<PlayerInventory>().hasGreen)
+                    {
+                        Debug.Log("Turning off");
+                        areaToSpawn_alternate.SetActive(false);
+                        areaToSpawn.SetActive(true);
+                    }
+                    else
+                    {
+                        Debug.Log("Turning on");
+                        areaToSpawn.SetActive(false);
+                        areaToSpawn_alternate.SetActive(true);
+                    }
                 }
                 else
                 {
-                    Debug.Log("Turning on");
-                    areaToSpawn.SetActive(false);
-                    areaToSpawn_alternate.SetActive(true);
+                    doorAnim.SetTrigger("OpenDoor");
+                    areaToSpawn.SetActive(true);
                 }
             }
         }

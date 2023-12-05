@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAggro: 0
-  awarenessRadius: 8
+  awarenessRadius: 25
   damageRadius: 4
   damageAmount: 10
   timeBetweenDamage: 5

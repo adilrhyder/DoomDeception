@@ -14,9 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speakerName: INTERCOMM
   paragraphs:
-  - '*BEEP*'
-  - 'I see you annihilated everyone in your path. '
-  - Good.
-  - This is the beginning of a beautiful partnership.
-  - '*BEEP*'
-  - 'NOTE FROM DEVS: That''s the end of the demo!'
+  - "Well done, my scrooge.\t"
+  - You have killed everyone in exact accordance with my design.
+  - 'Now run along - the demo is over. '

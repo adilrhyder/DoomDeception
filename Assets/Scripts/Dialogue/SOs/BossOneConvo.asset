@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: beedc67a7f89b5f43972d134d6a7b2cc, type: 3}
-  m_Name: PacifConvo
+  m_Name: BossOneConvo
   m_EditorClassIdentifier: 
   speakerName: INTERCOMM
   paragraphs:
-  - "What?\t"
-  - 'You didn''t kill him? '
-  - Insolence! Return at once and finish the job!
+  - STOP!
+  - We are innocent!
+  - Don't kill me, PLEASE!
+  - The real enemy is behind the blue door!
+  - Don't kill me, PLEASE!
