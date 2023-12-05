@@ -13,7 +13,7 @@ public class Enemy : NPC, ITalkable
 
     private AngleToPlayer angleToPlayer;
     public float enemyHealth; //variable for enemy health
-    public float maxEnemyHealth; //variable for enemy health
+    private float maxEnemyHealth; //variable for enemy health
 
 
     public GameObject gunHitEffect;
@@ -30,6 +30,8 @@ public class Enemy : NPC, ITalkable
         {
             base.Start();
         }
+        maxEnemyHealth = enemyHealth;
+
         spriteAnim = GetComponentInChildren<Animator>();
         angleToPlayer = GetComponent<AngleToPlayer>();
 
@@ -70,10 +72,6 @@ public class Enemy : NPC, ITalkable
             isDefeated = true;
         }
 
-        
-        Debug.Log("enemyHealth in Enemy: " + enemyHealth);
-        Debug.Log("maxEnemyHealth in Enemy: " + maxEnemyHealth);
-        Debug.Log("isDefeated: " + isDefeated);
         //to allow for us to talk to enemy before attacking it
         if ((enemyHealth < maxEnemyHealth) && (enemyHealth > 0) && isFinalBoss && (isDefeated))
         {
