@@ -9,7 +9,7 @@ using UnityEngine;
 //when we import an interface, we have to implement the methods contained therein
 public abstract class NPC : MonoBehaviour, IInteractable
 {
-    [SerializeField] private SpriteRenderer _interactSprite;
+    [SerializeField] protected SpriteRenderer _interactSprite;
 
     protected Transform playersTransform;
 
@@ -30,7 +30,6 @@ public abstract class NPC : MonoBehaviour, IInteractable
     virtual protected void Start()
     {
         playersTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        _interactSprite.gameObject.SetActive(true);
     }
 
     virtual protected void Update()
@@ -53,7 +52,7 @@ public abstract class NPC : MonoBehaviour, IInteractable
             //turn off interact sprite if not in range of NPC
             _interactSprite.gameObject.SetActive(false);
         }
-        else if ((!_interactSprite.gameObject.activeSelf) && ((IsWithinInteractDistance()) || (isDefeated)) && (!isFinalBoss))
+        else if ((!_interactSprite.gameObject.activeSelf) && ((IsWithinInteractDistance() && isIntercomm) || (isDefeated)))
         {
             // Debug.Log("Turning on");
             //turn on interact sprite if in range of NPC

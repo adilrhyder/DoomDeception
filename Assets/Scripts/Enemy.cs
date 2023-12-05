@@ -34,9 +34,11 @@ public class Enemy : NPC, ITalkable
 
         spriteAnim = GetComponentInChildren<Animator>();
         angleToPlayer = GetComponent<AngleToPlayer>();
+        spriteAnim.SetBool("isFinalBoss", isFinalBoss); 
 
         enemyManager = FindObjectOfType<EnemyManager>();  
         _interactSpriteKill.gameObject.SetActive(false);
+        _interactSprite.gameObject.SetActive(false);
 
         playersTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
@@ -80,7 +82,7 @@ public class Enemy : NPC, ITalkable
         }
 
         //player has seen dialogue prompt and shot again
-        if ((enemyHealth <= -1) && (isDefeated))
+        if ((enemyHealth <= -2) && (isDefeated))
         {
             //remove this object from list 
             enemyManager.RemoveEnemy(this);

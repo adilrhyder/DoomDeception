@@ -10,6 +10,8 @@ public class MouseMovement : MonoBehaviour
     private float xMousePos;
     private float smoothedMousePos;
 
+    public bool isPaused = false;
+
     private float currentLookingPos;
 
     // Start is called before the first frame update
@@ -23,9 +25,13 @@ public class MouseMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetInput();         //function to get input
-        ModifyInput();      //modifying input
-        MovePlayer();       //moving player
+
+        if (!isPaused)
+        {
+            GetInput();         //function to get input
+            ModifyInput();      //modifying input
+            MovePlayer();       //moving player
+        }
     }
 
     void GetInput()
