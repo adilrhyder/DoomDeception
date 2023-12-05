@@ -11,34 +11,51 @@ public abstract class NPC : MonoBehaviour, IInteractable
 {
     [SerializeField] private SpriteRenderer _interactSprite;
 
-    private Transform playersTransform;
+    protected Transform playersTransform;
+
+    //protected variable for talkable enemy to access (when enemy is defeated, only THEN should you be able to talk to it)
+    public bool isDefeated = true;
+
+    //variable for storing whether this enemy is talkable
+    public bool isTalkable;
+
+    //flag to recognize final boss (should be talkable before attack)
+    public bool isFinalBoss;
+
+    //flag to recognize intercomms
+    public bool isIntercomm;
 
     private const float INTERACT_DISTANCE = 5f;
 
-    private void Start()
+    virtual protected void Start()
     {
         playersTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        _interactSprite.gameObject.SetActive(true);
     }
 
-    private void Update()
+    virtual protected void Update()
     {
+        // Debug.Log("Value of isDefeated: " + isDefeated);
         // if (Keyboard.current.eKey.wasPressedThisFrame)
         // {
         //    //interact method called 
         // }
-        if ((Input.GetKeyDown("e")) && (IsWithinInteractDistance()))
+        if ((Input.GetKeyDown("e")) && (IsWithinInteractDistance()) && (isDefeated || isIntercomm))
         {
             Interact();
             //call interact method
         }
 
-        if ((_interactSprite.gameObject.activeSelf) && (!IsWithinInteractDistance()))
+        // Debug.Log("")
+        if ((_interactSprite.gameObject.activeSelf) && (!IsWithinInteractDistance()) && (!isDefeated))
         {
+            // Debug.Log("Turning off");
             //turn off interact sprite if not in range of NPC
             _interactSprite.gameObject.SetActive(false);
         }
-        else if ((!_interactSprite.gameObject.activeSelf) && (IsWithinInteractDistance()))
+        else if ((!_interactSprite.gameObject.activeSelf) && ((IsWithinInteractDistance()) || (isDefeated)) && (!isFinalBoss))
         {
+            // Debug.Log("Turning on");
             //turn on interact sprite if in range of NPC
             _interactSprite.gameObject.SetActive(true);
         }
