@@ -28,6 +28,12 @@ public class PauseMenu : MonoBehaviour
             Debug.Log("Quitting Game");
             QuitGame();
         }
+        if (Input.GetKeyDown("m") && isPaused)
+        {
+            // Quit Game
+            Debug.Log("Going to main menu");
+            LoadMenu();
+        }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if(isPaused)
