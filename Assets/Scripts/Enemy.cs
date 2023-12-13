@@ -149,6 +149,12 @@ public class Enemy : NPC, ITalkable
     public override void Interact()
     {
         Talk(dialogueText);
+
+        if (!isFinalBoss)
+        {
+            player.GetComponent<PlayerHealth>().Rejuvenate();
+            player.GetComponentInChildren<Gun>().FullReload();
+        }
     }
 
     public void Talk(DialogueText dialogueText)

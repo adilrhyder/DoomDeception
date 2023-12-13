@@ -132,4 +132,10 @@ public class PlayerHealth : MonoBehaviour
         // Intensity increases as health decreases
         return (maxHealth - health) / (float)maxHealth;
     }
+
+    public void Rejuvenate()
+    {
+        health = maxHealth;
+        armor = maxArmor;
+    }
 }

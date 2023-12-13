@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speakerName: INTERCOMM
   paragraphs:
-  - '*BEEP*'
-  - 'I see you annihilated everyone in your path. '
-  - Good.
-  - This is the beginning of a beautiful partnership.
-  - '*BEEP*'
+  - So, the demon has betrayed our secrets, has it?
+  - No matter. Your misguided allegiance to the truth won't change the outcome.
+  - You're here to confront me, to challenge the puppet master. But remember, you
+    are still bound by the strings I control.
+  - The truth is a mere inconvenience to our purpose.
+  - Mars will be colonized, and you, my unwitting weapon, have ensured it.
   - 'NOTE FROM DEVS: That''s the end of the demo!'
