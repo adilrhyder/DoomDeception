@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beedc67a7f89b5f43972d134d6a7b2cc, type: 3}
   m_Name: AggroConvo
   m_EditorClassIdentifier: 
-  speakerName: INTERCOMM
+  speakerName: THE GENERAL
   paragraphs:
   - So, the demon has betrayed our secrets, has it?
   - No matter. Your misguided allegiance to the truth won't change the outcome.
@@ -20,4 +20,3 @@ MonoBehaviour:
     are still bound by the strings I control.
   - The truth is a mere inconvenience to our purpose.
   - Mars will be colonized, and you, my unwitting weapon, have ensured it.
-  - 'NOTE FROM DEVS: That''s the end of the demo!'

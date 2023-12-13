@@ -167,5 +167,6 @@ public class Gun : MonoBehaviour
     public void FullReload()
     {
         ammo = maxAmmo;
+        CanvasManager.Instance.UpdateAmmo(ammo);
     }
 }

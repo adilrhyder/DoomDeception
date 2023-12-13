@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beedc67a7f89b5f43972d134d6a7b2cc, type: 3}
   m_Name: PacifConvo
   m_EditorClassIdentifier: 
-  speakerName: INTERCOMM
+  speakerName: THE GENERAL
   paragraphs:
   - Ah, Slayer, the puppet dances into the lair.
   - You've butchered the demonic hordes with ruthless precision. Impressive, for

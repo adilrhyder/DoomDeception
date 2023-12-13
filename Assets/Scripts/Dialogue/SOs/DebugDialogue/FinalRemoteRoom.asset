@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beedc67a7f89b5f43972d134d6a7b2cc, type: 3}
   m_Name: FinalRemoteRoom
   m_EditorClassIdentifier: 
-  speakerName: FinalRemoteRoom
+  speakerName: INTERCOMM
   paragraphs:
   - Slayer, you've reached the room where knowledge was promised, yet only another
     remote awaits in the shadows.

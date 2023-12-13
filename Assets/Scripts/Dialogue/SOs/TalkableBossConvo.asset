@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beedc67a7f89b5f43972d134d6a7b2cc, type: 3}
   m_Name: TalkableBossConvo
   m_EditorClassIdentifier: 
-  speakerName: The Demon
+  speakerName: THE DEMON
   paragraphs:
   - 'Slayer, the veil of deception has shadowed your path. The man on the intercom
     orchestrates a macabre symphony of lies. '

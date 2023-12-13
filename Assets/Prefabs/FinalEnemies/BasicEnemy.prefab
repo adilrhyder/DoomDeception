@@ -277,6 +277,7 @@ MonoBehaviour:
   enemyManager: {fileID: 0}
   enemyHealth: 3
   gunHitEffect: {fileID: 4796006912643067843, guid: 23cba89eb0a76e248a5e9653e56d4212, type: 3}
+  talkcount: 0
   dialogueText: {fileID: 0}
   dialogueController: {fileID: 0}
 --- !u!114 &60143874191413234
@@ -292,9 +293,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAggro: 0
-  awarenessRadius: 25
+  awarenessRadius: 100
   damageRadius: 4
-  damageAmount: 10
+  damageAmount: 7
   timeBetweenDamage: 5
 --- !u!114 &1006098421233998278
 MonoBehaviour:

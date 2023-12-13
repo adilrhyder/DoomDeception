@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : NPC, ITalkable
 {
@@ -18,6 +19,8 @@ public class Enemy : NPC, ITalkable
 
     public GameObject gunHitEffect;
     private float instant_kill_level = 1f; 
+
+    public int talkcount = 0;
 
     private const float INTERACT_DISTANCE = 5f;
 
@@ -67,6 +70,11 @@ public class Enemy : NPC, ITalkable
             
             //destroy game object 
             Destroy(gameObject);
+            if (isFinalBoss)
+            {
+                // Move to the next scene
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
         }
 
         //show dialogue prompt after enemy is defeated
@@ -89,6 +97,12 @@ public class Enemy : NPC, ITalkable
             if (!isFinalBoss)
             {
                 player.GetComponent<PlayerInventory>().hasKilled = true;
+            }
+            else
+            {
+                Debug.Log("Final Boss Defeated");
+                // Move to the next scene
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
             //remove this object from list 
             enemyManager.RemoveEnemy(this);
@@ -149,8 +163,10 @@ public class Enemy : NPC, ITalkable
     public override void Interact()
     {
         Talk(dialogueText);
+        talkcount++;
+        Debug.Log(talkcount);
 
-        if (!isFinalBoss)
+        if (!isFinalBoss && (talkcount >= 12))
         {
             player.GetComponent<PlayerHealth>().Rejuvenate();
             player.GetComponentInChildren<Gun>().FullReload();

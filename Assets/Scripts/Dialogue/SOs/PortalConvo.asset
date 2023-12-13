@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: beedc67a7f89b5f43972d134d6a7b2cc, type: 3}
-  m_Name: IntroConversation
+  m_Name: PortalConvo
   m_EditorClassIdentifier: 
   speakerName: INTERCOMM
   paragraphs:
-  - Slayer, your next trial awaits
-  - Beyond that grey door behind you, the damned hall echoes with the hiss of demons
-  - Walk the path of carnage, and at the hall's end, deactivate the accursed remote
-  - May the fires of hell tremble before your might
+  - 'Slayer, passing through this portal will transport you to Earth and end your
+    journey. '
+  - 'Be wary of what decision you make. '

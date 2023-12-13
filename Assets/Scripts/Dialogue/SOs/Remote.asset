@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beedc67a7f89b5f43972d134d6a7b2cc, type: 3}
   m_Name: Remote
   m_EditorClassIdentifier: 
-  speakerName: Remote
+  speakerName: REMOTE
   paragraphs:
   - REMOTE DEACTIVATED SUCCESSFULLY
