@@ -68,11 +68,11 @@ public class PauseMenu : MonoBehaviour
         isPaused = true;
     }
 
-    public void LoadMenu()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("Menu");
-    }
+    // public void LoadMenu()
+    // {
+    //     Time.timeScale = 1f;
+    //     SceneManager.LoadScene("Menu");
+    // }
 
     public void QuitGame()
     {
