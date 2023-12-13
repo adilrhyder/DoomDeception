@@ -15,11 +15,11 @@ EditorBuildSettings:
     path: Assets/Scenes/FinalCutscene.unity
     guid: 288c949a287cccf46a5248babc49b9c2
   - enabled: 1
-    path: Assets/Scenes/DoomDeception.unity
-    guid: 39f165a0686dcc44ab9fb0af5a27af6f
-  - enabled: 1
     path: Assets/Scenes/Ending.unity
     guid: 1025a3b0b8809bd419e1e13e048a486f
+  - enabled: 1
+    path: Assets/Scenes/DoomDeception.unity
+    guid: 39f165a0686dcc44ab9fb0af5a27af6f
   - enabled: 0
     path: Assets/Scenes/GameCompleted.unity
     guid: 8ef1dc37c9e4db74d8473e76f4dff65c
