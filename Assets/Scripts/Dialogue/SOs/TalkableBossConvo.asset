@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beedc67a7f89b5f43972d134d6a7b2cc, type: 3}
+  m_Name: TalkableBossConvo
+  m_EditorClassIdentifier: 
+  speakerName: The Demon
+  paragraphs:
+  - 'Slayer, the veil of deception has shadowed your path. The man on the intercom
+    orchestrates a macabre symphony of lies. '
+  - The scientists, once pawns, now lie lifeless, victims of his twisted ambitions.
+  - 'Mars was never yours to conquer; it has always been our realm, a domain claimed
+    by the denizens of hell. '
+  - He seeks to colonize it for a conglomerate, weaving a dark tapestry of deceit.
+  - You, Slayer, are the unwitting pawn, a super soldier brainwashed for his sinister
+    cause.
+  - The war, a twisted ballet of chaos, has waged for months, and you, Slayer, stand
+    as The General's last hope.
+  - 'The remotes, interfaces for our environmental rehabilitation system, are the
+    very lifeblood that fuels our advance in this forsaken facility. '
+  - Their deactivation delays our infernal progress.
+  - Behind you lies the chamber where The General hid his treachery. The land has
+    always belonged to us, Slayer.
+  - 'Choose your path: Confront The General at the place where you first spawned,
+    and shatter the chains of manipulation. '
+  - Or forsake this realm by heading straight to the portal, leaving the demons to
+    reclaim what has, and always will be, rightfully theirs.
+  - 'Whatever you choose, we thank you for your willingness to lend an ear. Head
+    forth with full spirits and ample health. '

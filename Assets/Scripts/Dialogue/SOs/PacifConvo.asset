@@ -14,8 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speakerName: INTERCOMM
   paragraphs:
-  - '*BEEP*'
-  - 'What? '
-  - How did you-
-  - GET THE GREEN KEY NOW!
-  - '*BEEP*'
+  - Ah, Slayer, the puppet dances into the lair.
+  - You've butchered the demonic hordes with ruthless precision. Impressive, for
+    a pawn.
+  - 'It''s time you understood the grand design. The scientists are dead. '
+  - Too feeble to comprehend the goals we strive for, they became traitors by their
+    own inadequacy.
+  - 'A necessary sacrifice for the cause. '
+  - Mars isn't just a red planet; it's a canvas for our masters, the conglomerate
+    I serve.
+  - I aim to colonize it, and you, Slayer, are the weapon they unleashed.
+  - By massacring the demons, you've paved the way for reinforcements. Your job is
+    done, Slayer.
+  - Leave through the portal, and let Mars be claimed in the name of our masters.
+  - Your legacy is written in blood, a testament to the success of our dark mission.

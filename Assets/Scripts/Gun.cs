@@ -163,4 +163,9 @@ public class Gun : MonoBehaviour
             enemyManager.RemoveEnemy(enemy);
         }
     }
+
+    public void FullReload()
+    {
+        ammo = maxAmmo;
+    }
 }
