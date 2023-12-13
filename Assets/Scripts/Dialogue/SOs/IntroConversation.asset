@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: beedc67a7f89b5f43972d134d6a7b2cc, type: 3}
-  m_Name: TestConversation
+  m_Name: IntroConversation
   m_EditorClassIdentifier: 
-  speakerName: Guy
+  speakerName: Intercomm
   paragraphs:
-  - '*BEEP*'
-  - What-
-  - You HAVE the green key?!
-  - '*BEEP*'
+  - Slayer, your next trial awaits
+  - Beyond that door, the damned hall echoes with the hiss of demons
+  - Walk the path of carnage, and at the hall's end, deactivate the accursed remote
+  - May the fires of hell tremble before your might
