@@ -21,7 +21,7 @@ public class Enemy : NPC, ITalkable
 
     private const float INTERACT_DISTANCE = 5f;
 
-
+    private GameObject player;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -41,6 +41,7 @@ public class Enemy : NPC, ITalkable
         _interactSprite.gameObject.SetActive(false);
 
         playersTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player");
 
         if (!isFinalBoss)
         {
@@ -72,6 +73,7 @@ public class Enemy : NPC, ITalkable
         if ((enemyHealth <= 0) && (isTalkable) && (!isFinalBoss))
         {
             isDefeated = true;
+            player.GetComponent<PlayerInventory>().hasEncountered = true;
         }
 
         //to allow for us to talk to enemy before attacking it
@@ -84,6 +86,10 @@ public class Enemy : NPC, ITalkable
         //player has seen dialogue prompt and shot again
         if ((enemyHealth <= -2) && (isDefeated))
         {
+            if (!isFinalBoss)
+            {
+                player.GetComponent<PlayerInventory>().hasKilled = true;
+            }
             //remove this object from list 
             enemyManager.RemoveEnemy(this);
             

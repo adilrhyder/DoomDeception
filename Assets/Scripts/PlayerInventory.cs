@@ -10,6 +10,8 @@ public class PlayerInventory : MonoBehaviour
 
     public bool hasKilled;
 
+    public bool hasEncountered;
+
     // Start is called before the first frame update
     void Start()
     {

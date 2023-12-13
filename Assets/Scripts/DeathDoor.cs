@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyDoor : MonoBehaviour
+public class DeathDoor : MonoBehaviour
 {
     public Animator doorAnim; 
     public GameObject areaToSpawn;
@@ -13,7 +13,7 @@ public class KeyDoor : MonoBehaviour
 
     public GameObject activeRoom;
 
-    public bool checksDeath;
+    public bool checksEncounter;
     public bool enemyKilled;
 
     public bool checksRedKey;
@@ -62,22 +62,19 @@ public class KeyDoor : MonoBehaviour
                     //remove key from UI
                     playerUI.GetComponent<CanvasManager>().UpdateKeys("red");
 
-                    if (checksDeath)
-                    {
-                        if (other.GetComponent<PlayerInventory>().hasKilled)
-                        {
-                            areaToSpawn.SetActive(false);
-                            areaToSpawn_alternate.SetActive(true);
-                        }
-                        else
-                        {
-                            areaToSpawn_alternate.SetActive(false);
-                            areaToSpawn.SetActive(true);
-                        }
-                    }
-
-                    isOpen = true;
-                    requiresKey = false;
+                    // if (checksDeath)
+                    // {
+                    //     if (other.GetComponent<PlayerInventory>().hasKilled)
+                    //     {
+                    //         areaToSpawn.SetActive(false);
+                    //         areaToSpawn_alternate.SetActive(true);
+                    //     }
+                    //     else
+                    //     {
+                    //         areaToSpawn_alternate.SetActive(false);
+                    //         areaToSpawn.SetActive(true);
+                    //     }
+                    // }
                 }
 
                 if (reqBlue && other.GetComponent<PlayerInventory>().hasBlue)
@@ -85,6 +82,8 @@ public class KeyDoor : MonoBehaviour
                     //open door
                     doorAnim.SetTrigger("OpenDoor");
 
+                    //spawn enemies in area
+                    areaToSpawn.SetActive(true);
 
                     //remove blue key from inventory
                     other.GetComponent<PlayerInventory>().hasBlue = false;
@@ -92,30 +91,19 @@ public class KeyDoor : MonoBehaviour
                     //remove key from UI
                     playerUI.GetComponent<CanvasManager>().UpdateKeys("blue");
 
-                    if (checksDeath)
-                    {
-                        Debug.Log("Inside checks death\n");
-                        if (other.GetComponent<PlayerInventory>().hasKilled)
-                        {
-                            Debug.Log("Has Killed\n");
-                            areaToSpawn.SetActive(false);
-                            areaToSpawn_alternate.SetActive(true);
-                        }
-                        else
-                        {
-                            Debug.Log("Has Not Killed\n");
-                            areaToSpawn_alternate.SetActive(false);
-                            areaToSpawn.SetActive(true);
-                        }
-                    }
-                    else
-                    {
-                        //spawn enemies in area
-                        areaToSpawn.SetActive(true);
-                    }
-
-                    isOpen = true;
-                    requiresKey = false;
+                    // if (checksDeath)
+                    // {
+                    //     if (other.GetComponent<PlayerInventory>().hasKilled)
+                    //     {
+                    //         areaToSpawn.SetActive(false);
+                    //         areaToSpawn_alternate.SetActive(true);
+                    //     }
+                    //     else
+                    //     {
+                    //         areaToSpawn_alternate.SetActive(false);
+                    //         areaToSpawn.SetActive(true);
+                    //     }
+                    // }
                 }
                 
 
@@ -148,10 +136,10 @@ public class KeyDoor : MonoBehaviour
                     //         areaToSpawn.SetActive(true);
                     //     }
                     // }
-                    isOpen = true;
-                    requiresKey = false;
                 }
                 
+                isOpen = true;
+                requiresKey = false;
             }
             
             else
@@ -163,9 +151,9 @@ public class KeyDoor : MonoBehaviour
                 //spawn enemies in area
                 if (isOpen)
                 {
-                    if (checksDeath)
+                    if (checksEncounter)
                     {
-                        if (other.GetComponent<PlayerInventory>().hasKilled)
+                        if (other.GetComponent<PlayerInventory>().hasEncountered)
                         {
                             areaToSpawnOnReturn.SetActive(false);
                             areaToSpawnOnReturn_alternate.SetActive(true);
@@ -180,15 +168,15 @@ public class KeyDoor : MonoBehaviour
                     {
                         if (other.GetComponent<PlayerInventory>().hasBlue)
                         {
-                            Debug.Log("Turning on");
-                            areaToSpawnOnReturn.SetActive(false);
-                            areaToSpawnOnReturn_alternate.SetActive(true);
-                        }
-                        else
-                        {
                             Debug.Log("Turning off");
                             areaToSpawnOnReturn_alternate.SetActive(false);
                             areaToSpawnOnReturn.SetActive(true);
+                        }
+                        else
+                        {
+                            Debug.Log("Turning on");
+                            areaToSpawnOnReturn.SetActive(false);
+                            areaToSpawnOnReturn_alternate.SetActive(true);
                         }
                     }
                     else if (checksRedKey)
