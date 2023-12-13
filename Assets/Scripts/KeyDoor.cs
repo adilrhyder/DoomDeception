@@ -123,21 +123,22 @@ public class KeyDoor : MonoBehaviour
                     // print("Updated Inventory");
                     playerUI.GetComponent<CanvasManager>().UpdateKeys("green");
 
-                    if (checksDeath)
-                    {
-                        if (other.GetComponent<PlayerInventory>().hasKilled)
-                        {
-                            areaToSpawn.SetActive(false);
-                            areaToSpawn_alternate.SetActive(true);
-                        }
-                        else
-                        {
-                            areaToSpawn_alternate.SetActive(false);
-                            areaToSpawn.SetActive(true);
-                        }
-                    }
+                    // if (checksDeath)
+                    // {
+                    //     if (other.GetComponent<PlayerInventory>().hasKilled)
+                    //     {
+                    //         areaToSpawn.SetActive(false);
+                    //         areaToSpawn_alternate.SetActive(true);
+                    //     }
+                    //     else
+                    //     {
+                    //         areaToSpawn_alternate.SetActive(false);
+                    //         areaToSpawn.SetActive(true);
+                    //     }
+                    // }
                 }
-
+                
+                isOpen = true;
                 requiresKey = false;
             }
             
@@ -150,18 +151,17 @@ public class KeyDoor : MonoBehaviour
                 //spawn enemies in area
                 if (isOpen)
                 {
-
                     if (checksDeath)
                     {
                         if (other.GetComponent<PlayerInventory>().hasKilled)
                         {
-                            areaToSpawn.SetActive(false);
-                            areaToSpawn_alternate.SetActive(true);
+                            areaToSpawnOnReturn.SetActive(false);
+                            areaToSpawnOnReturn_alternate.SetActive(true);
                         }
                         else
                         {
-                            areaToSpawn_alternate.SetActive(false);
-                            areaToSpawn.SetActive(true);
+                            areaToSpawnOnReturn_alternate.SetActive(false);
+                            areaToSpawnOnReturn.SetActive(true);
                         }
                     }
                     else if (checksBlueKey)
