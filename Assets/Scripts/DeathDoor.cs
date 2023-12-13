@@ -75,6 +75,8 @@ public class DeathDoor : MonoBehaviour
                     //         areaToSpawn.SetActive(true);
                     //     }
                     // }
+                    isOpen = true;
+                    requiresKey = false;
                 }
 
                 if (reqBlue && other.GetComponent<PlayerInventory>().hasBlue)
@@ -104,6 +106,8 @@ public class DeathDoor : MonoBehaviour
                     //         areaToSpawn.SetActive(true);
                     //     }
                     // }
+                    isOpen = true;
+                    requiresKey = false;
                 }
                 
 
@@ -136,10 +140,10 @@ public class DeathDoor : MonoBehaviour
                     //         areaToSpawn.SetActive(true);
                     //     }
                     // }
+                    isOpen = true;
+                    requiresKey = false;
                 }
                 
-                isOpen = true;
-                requiresKey = false;
             }
             
             else
