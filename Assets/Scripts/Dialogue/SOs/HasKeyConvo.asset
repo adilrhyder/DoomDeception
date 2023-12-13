@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beedc67a7f89b5f43972d134d6a7b2cc, type: 3}
+  m_Name: HasKeyConvo
+  m_EditorClassIdentifier: 
+  speakerName: Intercomm
+  paragraphs:
+  - Slayer, chaos reigns in these Martian halls.
+  - Demons echo through once-sacred spaces, drowning out the pleas of scientists
+    in peril.
+  - Before you, a blue door holds ominous promise. Your key is the only way forward.
+  - 'Choose your fate: go left in the next hall to rescue the scientists. Their lives
+    hang in the balance!'
+  - 'Or turn right to depart Mars through the portal, leaving the echoes of damnation
+    behind. '
+  - The choice is yours, but remember, the consequences will carve the tale of your
+    legacy.

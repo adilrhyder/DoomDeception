@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: beedc67a7f89b5f43972d134d6a7b2cc, type: 3}
-  m_Name: IntroConversation
+  m_Name: NoKeyConvo
   m_EditorClassIdentifier: 
   speakerName: Intercomm
   paragraphs:
-  - Slayer, your next trial awaits
-  - Beyond that grey door behind you, the damned hall echoes with the hiss of demons
-  - Walk the path of carnage, and at the hall's end, deactivate the accursed remote
-  - May the fires of hell tremble before your might
+  - Slayer, the key to your destiny lies dormant in the hall from which you just
+    emerged.
+  - Do not disregard its importance.
+  - Seek out the key before the door, and grasp it with the hand of a relentless
+    warrior.
+  - 'The key is your ally, and Mars hungers for your decision. '

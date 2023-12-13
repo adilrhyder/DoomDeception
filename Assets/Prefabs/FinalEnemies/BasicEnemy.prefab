@@ -275,7 +275,7 @@ MonoBehaviour:
   isIntercomm: 0
   _interactSpriteKill: {fileID: 5906093833613443369}
   enemyManager: {fileID: 0}
-  enemyHealth: 10
+  enemyHealth: 3
   gunHitEffect: {fileID: 4796006912643067843, guid: 23cba89eb0a76e248a5e9653e56d4212, type: 3}
   dialogueText: {fileID: 0}
   dialogueController: {fileID: 0}
@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAggro: 0
-  awarenessRadius: 8
+  awarenessRadius: 25
   damageRadius: 4
   damageAmount: 10
   timeBetweenDamage: 5
